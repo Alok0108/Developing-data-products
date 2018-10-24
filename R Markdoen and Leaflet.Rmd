@@ -1,0 +1,35 @@
+---
+title: "R Markdown and Leaflet"
+author: "Alok Tripathi"
+date: "October 24, 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+The source code is available at [GitHub](https://github.com/Alok0108/Developing-data-products). [Just click here!](https://github.com/Alok0108/Developing-data-products)
+
+## My First Leaflet Map
+Create a leaflet map object.
+```{r cars}
+library(leaflet)
+map <- leaflet() %>% addTiles()
+```
+
+Create a marker with a picture of Benrath Palace and a link to its homepage.
+```{r}
+benrathPalaceIcon <- makeIcon(
+   iconUrl = "http://www.tajmahaltourism.com/pages/extra-images/news_grid2.jpg",
+   iconWidth = 30*408/255, iconHeight = 30,
+   iconAnchorX = 30*408/255/2, iconAnchorY = 30/2
+)
+```
+
+Add the marker to the map and display the map.
+```{r}
+tajmahalPopup <- c("<a href= 'http://www.tajmahaltourism.com/' > Taj Mahal<br><img src='http://www.tajmahaltourism.com/pages/extra-images/news_grid2.jpg' width='210' height='132'  alt='Taj Mahal Agra India' title='Taj Mahal Tour'></a>")
+map %>%
+   addTiles() %>%
+   addMarkers(lat=27.1750, lng=78.0422, popup = tajmahalPopup)
